@@ -34,6 +34,18 @@ COLORS = [
     "#4CEE0B"
 ]
 
+#global variables
+BOARD_HIGHT=0
+BOARD_WIDTH=0
+SNAKE_COUNT=0
+BOARD_DATA = []
+GAME_ID = ''
+OUR_SNAKE_ID = ''
+
+#global snake's data
+
+
+
 @bottle.route('/static/<path:path>')
 def static(path):
     return bottle.static_file(path, root='static/')
@@ -42,9 +54,15 @@ def static(path):
 @bottle.post('/start')
 def start():
     data = bottle.request.json
-    game_id = data['game_id']
-    board_width = data['width']
-    board_height = data['height']
+    global GAME_ID
+    GAME_ID = data['game_id']
+    global BOARD_WIDTH
+    BOARD_WIDTH = data['width']
+    global BOARD_HIGHT
+    BOARD_HIGHT = data['height']
+
+    global OUR_SNAKE_ID
+    OUR_SNAKE_ID = data['you']
 
     head_url = '%s://%s/static/head.png' % (
         bottle.request.urlparts.scheme,
@@ -55,15 +73,23 @@ def start():
 
     return {
         'color': random.choice(COLORS),
-        'taunt': '{} ({}x{})'.format(game_id, board_width, board_height),
+        'taunt': '{} ({}x{})'.format(GAME_ID, BOARD_WIDTH, BOARD_HIGHT),
         'head_url': head_url,
-        'name': 'battlesnake-python'
+        'name': '!HypnoSnake$'
     }
 
 
 @bottle.post('/move')
 def move():
     data = bottle.request.json
+
+#variables
+    FOOD = data['food']
+    ALL_SNAKES = data['snakes']
+    DEAD_SNAKES = data['dead_snake']
+
+
+
 
     # TODO: Do things with data
     directions = ['up', 'down', 'left', 'right']
