@@ -2,6 +2,37 @@ import bottle
 import os
 import random
 
+TAUNTS = [
+    "You wanna piece of me? C'mon!",
+    "Chicken! Fight Like a Snake!",
+    "Iff yoo hert maaee baybeez Aaeell rost yoo ahlive",
+    "I'll be back!",
+    "You fight like a dairy farmer!",
+    "Impossible Mission!",
+    "I never asked your sister out!",
+    "Stick to the pond, froggy!",
+    "Butt-kicking for goodness!",
+    "Hey! You! Snaky!",
+    "Run Forrest, run!",
+    "Who's slow now?!",
+    "PushThePowerButton",
+    "Marry Me?? <3",
+    "Hands off my tail",
+    "yololo",
+    "I just wanna tell you how I'm feeling",
+    "Gotta make you understand",
+    "We've known each other for so long",
+    "Wat up? :p",
+    "BOODERS"
+]
+
+COLORS = [
+    "#008080",
+    "#EAA118",
+    "#3F18EA",
+    "#EE0BCD",
+    "#4CEE0B"
+]
 
 @bottle.route('/static/<path:path>')
 def static(path):
@@ -23,7 +54,7 @@ def start():
     # TODO: Do things with data
 
     return {
-        'color': '#00FF00',
+        'color': random.choice(COLORS),
         'taunt': '{} ({}x{})'.format(game_id, board_width, board_height),
         'head_url': head_url,
         'name': 'battlesnake-python'
@@ -39,7 +70,7 @@ def move():
 
     return {
         'move': random.choice(directions),
-        'taunt': 'battlesnake-python!'
+        'taunt': random.choice(TAUNTS)
     }
 
 
