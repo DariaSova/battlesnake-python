@@ -1,6 +1,9 @@
 import bottle
 import os
 import random
+import math
+from helpers import *
+
 
 TAUNTS = [
     "You wanna piece of me? C'mon!",
@@ -87,6 +90,9 @@ def move():
     FOOD = data['food']
     ALL_SNAKES = data['snakes']
     DEAD_SNAKES = data['dead_snake']
+    all_snakes_coords = snakeLocations(data.get("snakes"))
+    ourSnakeHead = get_our_snake_position(data.get("snakes"), OUR_SNAKE_ID)
+    borders = get_borders_coords(data["height"], data["width"])
 
 
 
