@@ -67,7 +67,7 @@ def start():
     global OUR_SNAKE_ID
     OUR_SNAKE_ID = data['you']
 
-    head_url = '%s://%s/static/head.png' % (
+    head_url = '%s://%s/static/snake.gif' % (
         bottle.request.urlparts.scheme,
         bottle.request.urlparts.netloc
     )
