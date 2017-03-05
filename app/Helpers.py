@@ -59,7 +59,7 @@ def get_borders_coords(b_height, b_width):
 
 
 #take [x,y] as coordinates
-def what_is_cell(coordinates, food, snakes, borders):
+def is_empty(coordinates, food, snakes, borders):
     if coordinates in food:
         return "food"
     #check boarders??
